@@ -14,7 +14,7 @@ import {
   IconButton,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { addNewSensor } from '../service/api';
+// import { addNewSensor } from '../service/api';
 
 export default function CreateSensorModal({ open, onClose }) {
   const [sensorData, setSensorData] = useState({
@@ -69,8 +69,10 @@ export default function CreateSensorModal({ open, onClose }) {
   const handleSubmit = async() => {
     // Implement your logic to handle the submission of new sensor data
     // For example, call an API to create a new sensor with sensorData
-    await addNewSensor(sensorData)
     console.log(sensorData)
+    
+    // await addNewSensor(sensorData)
+    
     setSensorData({
       location: {
         type: 'Point',

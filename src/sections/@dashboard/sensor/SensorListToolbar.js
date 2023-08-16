@@ -38,7 +38,7 @@ SensorListToolbar.propTypes = {
   onFilterName: PropTypes.func,
 };
 
-export default function SensorListToolbar({ numSelected, filterName, onFilterName }) {
+export default function SensorListToolbar({ numSelected, filterName, onFilterName,handleDeleteMutiple }) {
   return (
     <StyledRoot
       sx={{
@@ -67,7 +67,7 @@ export default function SensorListToolbar({ numSelected, filterName, onFilterNam
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={handleDeleteMutiple}>
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>

@@ -127,6 +127,17 @@ export default function SensorPage() {
     }
     setSelected([]);
   };
+  const handleDeleteMutiple = () => {
+    // Filter out the selected sensors from the sensorList
+    const updatedList = sensorList.filter(sensor => !selected.includes(sensor.sensorId));
+    
+    // Clear the selected sensors
+    setSelected([]);
+    
+    // Update the sensorList state with the updated list
+    setSensorList(updatedList);
+  };
+  
   const handleDelete = () => {
     const updatedList = sensorList.filter((sensor) => sensor._id !== selectedSensor._id);
     setSensorList(updatedList);
@@ -157,7 +168,7 @@ export default function SensorPage() {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
 
-  const handleFilterByName = (event) => {
+  const handleFilterBySensorId = (event) => {
     setPage(0);
     setFilterName(event.target.value);
   };
@@ -185,7 +196,7 @@ export default function SensorPage() {
         </Stack>
 
         <Card>
-          <SensorListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+          <SensorListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterBySensorId} handleDeleteMutiple={handleDeleteMutiple}/>
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
