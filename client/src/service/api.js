@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL='http://localhost:8000'
+const URL='https://api-spottroop.onrender.com'
 
 export const getAllSensors=async()=>{
      const res=await axios.get(`${URL}/sensor`)
