@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -14,18 +14,14 @@ import {
   IconButton,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-// import { addNewSensor } from '../service/api';
+ import { updateSensor } from '../service/api';
 
-export default function CreateSensorModal({ open, onClose }) {
-  const [sensorData, setSensorData] = useState({
-    location: {
-      type: 'Point',
-      coordinates: [0, 0],
-    },
-    sensorId: '',
-    status: 'inactive', // Default status
-    // Add other sensor properties here
-  });
+export default function EditSensorModal({ open, onClose, initialSensorData,fetchSensorData }) {
+  const [sensorData, setSensorData] = useState(initialSensorData);
+
+  useEffect(() => {
+    setSensorData(initialSensorData);
+  }, [initialSensorData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -63,25 +59,14 @@ export default function CreateSensorModal({ open, onClose }) {
       }));
     }
   };
-  
-  
 
-  const handleSubmit = async() => {
-    // Implement your logic to handle the submission of new sensor data
-    // For example, call an API to create a new sensor with sensorData
-    console.log(sensorData)
-    
-    // await addNewSensor(sensorData)
-    
-    setSensorData({
-      location: {
-        type: 'Point',
-        coordinates: [0, 0],
-      },
-      sensorId: '',
-      status: 'inactive', // Default status
-      // Add other sensor properties here
-    })
+  const handleSubmit = async () => {
+    // Implement your logic to handle the submission of updated sensor data
+    // For example, call an API to update the sensor using sensorData
+    console.log(sensorData);
+
+     await updateSensor(sensorData);
+     fetchSensorData()
     // Then close the modal using onClose
     onClose();
   };
@@ -90,7 +75,7 @@ export default function CreateSensorModal({ open, onClose }) {
     <Modal open={open} onClose={onClose} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Card style={{ width: '100%', maxWidth: 600 }}>
         <CardHeader
-          title="Create New Sensor"
+          title="Edit Sensor"
           action={
             <IconButton onClick={onClose}>
               <CloseIcon />
@@ -135,9 +120,8 @@ export default function CreateSensorModal({ open, onClose }) {
             value={sensorData.location.coordinates[1]}
             onChange={(event) => handleCoordinateChange(event, 1)}
           />
-          {/* Add other input fields for additional sensor properties */}
           <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Create
+            Save Changes
           </Button>
         </CardContent>
       </Card>
@@ -146,7 +130,8 @@ export default function CreateSensorModal({ open, onClose }) {
 }
 
 // Prop type validation
-CreateSensorModal.propTypes = {
+EditSensorModal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  initialSensorData: PropTypes.object.isRequired,
 };

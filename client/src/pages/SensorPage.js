@@ -33,7 +33,7 @@ import {
   SensorListHead,
   SensorListToolbar,
 } from "../sections/@dashboard/sensor";
-import { getAllSensors } from "../service/api";
+import { getAllSensors,deleteSensor } from "../service/api";
 
 // mock
 
@@ -158,11 +158,9 @@ export default function SensorPage() {
     setSensorList(updatedList);
   };
 
-  const handleDelete = () => {
-    const updatedList = sensorList.filter(
-      (sensor) => sensor._id !== selectedSensor._id
-    );
-    setSensorList(updatedList);
+  const handleDelete = async() => {
+    await deleteSensor(selectedSensor._id)
+    fetchSensorData();
     setOpen(null); // Close the popover when deleting
   };
 
@@ -396,11 +394,13 @@ export default function SensorPage() {
       <SensorModal
         open={openCreateModal}
         onClose={() => setOpenCreateModal(false)}
+        fetchSensorData={fetchSensorData}
       />
       <EditSensorModal
         open={openEditModal}
         onClose={() => setOpenEditModal(false)}
         initialSensorData={selectedSensor} // Pass the selected sensor data for editing
+        fetchSensorData={fetchSensorData}
       />
     </>
   );
