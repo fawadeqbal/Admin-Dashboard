@@ -33,15 +33,17 @@ import {
   SensorListHead,
   SensorListToolbar,
 } from "../sections/@dashboard/sensor";
-import { getAllSensors,deleteSensor } from "../service/api";
+import { getAllSensors, deleteSensor } from "../service/api";
+import CoordinateCell from "../components/coordinates/CoordinateCell";
 
 // mock
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "sensorId", label: "SensorId", alignRight: false },
+  { id: "sensorId", label: "Sensor Id", alignRight: false },
   { id: "status", label: "Status", alignRight: false },
+  { id: "location", label: "Location", alignRight: false },
   { id: "" },
 ];
 
@@ -85,11 +87,11 @@ export default function SensorPage() {
   const [open, setOpen] = useState(null);
   const [selectedSensor, setSelectedSensor] = useState({
     location: {
-      type: 'Point',
+      type: "Point",
       coordinates: [0, 0],
     },
-    sensorId: '',
-    status: 'inactive', // Default status
+    sensorId: "",
+    status: "inactive", // Default status
     // Add other sensor properties here
   });
   const [page, setPage] = useState(0);
@@ -158,8 +160,8 @@ export default function SensorPage() {
     setSensorList(updatedList);
   };
 
-  const handleDelete = async() => {
-    await deleteSensor(selectedSensor._id)
+  const handleDelete = async () => {
+    await deleteSensor(selectedSensor._id);
     fetchSensorData();
     setOpen(null); // Close the popover when deleting
   };
@@ -297,6 +299,12 @@ export default function SensorPage() {
                             </Label>
                           </TableCell>
 
+                          <TableCell>
+                            <CoordinateCell
+                              latitude={sensor.location.coordinates[0]}
+                              longitude={sensor.location.coordinates[1]}
+                            />
+                          </TableCell>
                           <TableCell align="right">
                             <IconButton
                               size="large"
@@ -374,15 +382,13 @@ export default function SensorPage() {
           },
         }}
       >
-        <MenuItem onClick={() => {
-          setOpenEditModal(true)
-          setOpen(null);
-        }}>
-          <Iconify
-            icon={"eva:edit-fill"}
-            sx={{ mr: 2 }}
-            
-          />
+        <MenuItem
+          onClick={() => {
+            setOpenEditModal(true);
+            setOpen(null);
+          }}
+        >
+          <Iconify icon={"eva:edit-fill"} sx={{ mr: 2 }} />
           Edit
         </MenuItem>
 
