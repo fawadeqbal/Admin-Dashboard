@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { filter } from "lodash";
-import { sentenceCase } from "change-case";
+// import { sentenceCase } from "change-case";
 import { useEffect, useState } from "react";
 // @mui
 import {
@@ -20,10 +20,11 @@ import {
   Typography,
   IconButton,
   TableContainer,
+  Select,
   TablePagination,
 } from "@mui/material";
 // components
-import Label from "../components/label";
+// import Label from "../components/label";
 import Iconify from "../components/iconify";
 import Scrollbar from "../components/scrollbar";
 import SensorModal from "../modal/SensorModal";
@@ -33,8 +34,8 @@ import {
   SensorListHead,
   SensorListToolbar,
 } from "../sections/@dashboard/sensor";
-import { getAllSensors, deleteSensor } from "../service/api";
-import CoordinateCell from "../components/coordinates/CoordinateCell";
+import { getAllSensors, updateSensorStatus } from "../service/api";
+import CoordinateCell from "../components/CoordinateCell/CoordinateCell";
 
 // mock
 
@@ -161,7 +162,7 @@ export default function SensorPage() {
   };
 
   const handleDelete = async () => {
-    await deleteSensor(selectedSensor._id);
+    // await deleteSensor(selectedSensor._id);
     fetchSensorData();
     setOpen(null); // Close the popover when deleting
   };
@@ -188,6 +189,11 @@ export default function SensorPage() {
     setPage(newPage);
   };
 
+  const handleUpdateStatus = async (sensorId, newStatus) => {
+    await updateSensorStatus(sensorId, { status: newStatus });
+    fetchSensorData();
+  };
+
   const handleChangeRowsPerPage = (event) => {
     setPage(0);
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -212,7 +218,7 @@ export default function SensorPage() {
   return (
     <>
       <Helmet>
-        <title> Sensor </title>
+        <title> SpotTroop | Sensors </title>
       </Helmet>
 
       <Container>
@@ -223,7 +229,7 @@ export default function SensorPage() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Sensor
+            Sensors - Dashboard
           </Typography>
           <Button
             variant="contained"
@@ -290,13 +296,27 @@ export default function SensorPage() {
                           </TableCell>
 
                           <TableCell align="left">
-                            <Label
+                            <Select
+                              value={status}
+                              onChange={(event) =>
+                                handleUpdateStatus(
+                                  sensor._id,
+                                  event.target.value
+                                )
+                              }
+                              label="Select Status"
                               color={
-                                (status === "banned" && "error") || "success"
+                                status === "active"
+                                  ? "success"
+                                  : status === "banned"
+                                  ? "error"
+                                  : "primary"
                               }
                             >
-                              {sentenceCase(status)}
-                            </Label>
+                              <MenuItem value="active">Active</MenuItem>
+                              <MenuItem value="inactive">Inactive</MenuItem>
+                              <MenuItem value="banned">Banned</MenuItem>
+                            </Select>
                           </TableCell>
 
                           <TableCell>
