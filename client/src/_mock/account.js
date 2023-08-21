@@ -2,7 +2,7 @@
 
 const account = {
   displayName: 'Fawad Iqbal',
-  email: 'fawadeqbal@yahoo.com',
+  email: 'fawad.iqbal@spottroop.com',
   photoURL: '/assets/images/avatars/avatar.jpg',
 };
 
