@@ -25,7 +25,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> SpotTroop | Dashboard </title>
+        <title> SpotTroop | Admin-Dashboard </title>
       </Helmet>
 
       <Container maxWidth="xl">
