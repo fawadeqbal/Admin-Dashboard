@@ -1,7 +1,10 @@
 import { Helmet } from 'react-helmet-async';
+import { useEffect,useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
+
+import { getAllSensors } from '../service/api';
 
 // sections
 import {
@@ -15,6 +18,28 @@ import {
 export default function DashboardAppPage() {
   const theme = useTheme();
 
+  const [totalSpaces, setTotalSpaces] = useState(0);
+  const [availableSpaces, setAvailableSpaces] = useState(0);
+  const [occupiedSpaces, setOccupiedSpaces] = useState(0);
+  const [bannedSpaces, setBannedSpaces] = useState(0);
+
+  useEffect(() => {
+    fetchSensorData(); // Assuming you have a function to fetch sensor data
+  }, []);
+
+  async function fetchSensorData() {
+    const data = await getAllSensors(); // Assuming you have a function to get sensor data
+    const total = data.length;
+    const available = data.filter(sensor => sensor.status === 'inactive').length;
+    const banned = data.filter(sensor => sensor.status==='banned').length;
+
+    const occupied = total - available - banned;
+    setBannedSpaces(banned)
+    setTotalSpaces(total);
+    setAvailableSpaces(available);
+    setOccupiedSpaces(occupied);
+  }
+
   return (
     <>
       <Helmet>
@@ -26,21 +51,39 @@ export default function DashboardAppPage() {
           Hi, Welcome back
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
+         
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary
+              title="Total Parking Spaces"
+              total={totalSpaces}
+              icon={'ant-design:android-filled'}
+            />
           </Grid>
-
+          
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary
+              title="Available Parking Spaces"
+              total={availableSpaces}
+              color="info"
+              icon={'ant-design:apple-filled'}
+            />
           </Grid>
-
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary
+              title="Occupied Parking Spaces"
+              total={occupiedSpaces}
+              color="warning"
+              icon={'ant-design:windows-filled'}
+            />
           </Grid>
-
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary
+              title="Banned Parking Spaces"
+              total={bannedSpaces}
+              color="warning"
+              icon={'ant-design:windows-filled'}
+            />
           </Grid>
 
          
