@@ -81,7 +81,7 @@ export default function DashboardAppPage() {
             <AppWidgetSummary
               title="Banned Parking Spaces"
               total={bannedSpaces}
-              color="warning"
+              color="error"
               icon={'ant-design:windows-filled'}
             />
           </Grid>
