@@ -37,6 +37,7 @@ import {
 import { getAllSensors, updateSensorStatus } from "../service/api";
 import CoordinateCell from "../components/CoordinateCell/CoordinateCell";
 
+
 // mock
 
 // ----------------------------------------------------------------------
@@ -112,15 +113,19 @@ export default function SensorPage() {
   // Add this state variable at the beginning of the component
   const [openEditModal, setOpenEditModal] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetchSensorData();
   }, []);
-
+  
   async function fetchSensorData() {
+    setIsLoading(true); // Set loading to true while fetching
     const data = await getAllSensors();
-
     setSensorList(data);
+    setIsLoading(false); // Set loading to false after fetching
   }
+  
 
   const handleOpenMenu = (event, sensor) => {
     setSelectedSensor(sensor);
@@ -239,6 +244,7 @@ export default function SensorPage() {
             New Sensor
           </Button>
         </Stack>
+       
 
         <Card>
           <SensorListToolbar
@@ -250,6 +256,27 @@ export default function SensorPage() {
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
+            {isLoading ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '200px', // Adjust the height as needed
+            margin: '16px', // Adjust the margin as needed
+          }}
+        >
+          <Typography
+            style={{
+              color: 'gray', // Adjust the color as needed
+              fontSize: '1.2rem', // Adjust the font size as needed
+            }}
+            variant="body1"
+          >
+            Loading sensor data...
+          </Typography>
+        </div>
+      ) :(
               <Table>
                 <SensorListHead
                   order={order}
@@ -260,6 +287,7 @@ export default function SensorPage() {
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
+                 
                 <TableBody>
                   {filteredSensors
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -368,7 +396,8 @@ export default function SensorPage() {
                     </TableRow>
                   </TableBody>
                 )}
-              </Table>
+              
+              </Table>)}
             </TableContainer>
           </Scrollbar>
 
