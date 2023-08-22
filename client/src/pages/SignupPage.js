@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { styled } from '@mui/material/styles';
 import { Container, Typography } from '@mui/material';
-import { SignIn } from '@clerk/clerk-react'; // Import Clerk's SignIn component
+import { SignUp } from '@clerk/clerk-react'; // Import Clerk's SignUp component
 
 const StyledContent = styled('div')(({ theme }) => ({
   maxWidth: 480,
@@ -14,18 +14,18 @@ const StyledContent = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0),
 }));
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <>
       <Helmet>
-        <title>Login | Admin Dashboard</title>
+        <title>Sign Up | Your App Name</title>
       </Helmet>
       <Container maxWidth="sm">
         <StyledContent>
           <Typography variant="h4" gutterBottom>
-            Sign in to Admin Dashboard
+            Create an Account
           </Typography>
-          <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+          <SignUp />
         </StyledContent>
       </Container>
     </>

@@ -7,7 +7,7 @@ import { bgBlur } from '../../../utils/cssStyles';
 // components
 import Iconify from '../../../components/iconify';
 
-import AccountPopover from './AccountPopover';
+import { UserButton } from '@clerk/clerk-react';
 
 
 // ----------------------------------------------------------------------
@@ -66,7 +66,7 @@ export default function Header({ onOpenNav }) {
             sm: 1,
           }}
         >
-          <AccountPopover />
+          <UserButton />
         </Stack>
       </StyledToolbar>
     </StyledRoot>

@@ -15,12 +15,7 @@ const navConfig = [
     title: 'sensor',
     path: '/dashboard/sensor',
     icon: icon('sensor-10'),
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
+  }
   // {
   //   title: 'Not found',
   //   path: '/404',
