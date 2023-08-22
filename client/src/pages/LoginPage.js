@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | Minimal UI </title>
+        <title> Login | Admin Dashboard </title>
       </Helmet>
 
       <StyledRoot>
@@ -70,7 +70,7 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Sign in to Admin Dashboard
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>

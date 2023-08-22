@@ -65,19 +65,13 @@ export default function SensorListToolbar({ numSelected, filterName, onFilterNam
         />
       )}
 
-      {numSelected > 0 ? (
+      {(
         <Tooltip title="Delete">
           <IconButton onClick={handleDeleteMutiple}>
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <Iconify icon="ic:round-filter-list" />
-          </IconButton>
-        </Tooltip>
-      )}
+      ) }
     </StyledRoot>
   );
 }
