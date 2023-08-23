@@ -18,7 +18,7 @@ export default function SignupPage() {
   return (
     <>
       <Helmet>
-        <title>Sign Up | Your App Name</title>
+        <title>Sign Up | SpotTroop</title>
       </Helmet>
       <Container maxWidth="sm">
         <StyledContent>

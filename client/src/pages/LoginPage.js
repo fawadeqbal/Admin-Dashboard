@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { styled } from '@mui/material/styles';
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { SignIn } from '@clerk/clerk-react'; // Import Clerk's SignIn component
 
 const StyledContent = styled('div')(({ theme }) => ({
@@ -22,10 +22,8 @@ export default function LoginPage() {
       </Helmet>
       <Container maxWidth="sm">
         <StyledContent>
-          <Typography variant="h4" gutterBottom>
-            Sign in to Admin Dashboard
-          </Typography>
-          <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+          
+          <SignIn />
         </StyledContent>
       </Container>
     </>

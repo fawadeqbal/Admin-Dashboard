@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react'; // Import Clerk's useUser hook
+import { UserProfile, useUser } from '@clerk/clerk-react'; // Import Clerk's useUser hook
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 import SensorPage from './pages/SensorPage';
@@ -20,10 +20,11 @@ export default function Router() {
         <Route index element={<Navigate to="app" />} />
         <Route path="app" element={<DashboardAppPage />} />
         <Route path="sensor" element={<SensorPage />} />
+        <Route path='user' element={<UserProfile/>}/>
       </Route>
       <Route path="/sign-in" element={!user.isSignedIn ? <LoginPage /> : <Navigate to="/dashboard/app" />} />
       <Route
-        element={!user ? <SimpleLayout /> : <Navigate to="/dashboard/app" />} // Redirect unauthenticated users
+        element={user.isSignedIn ? <SimpleLayout /> : <Navigate to="/dashboard/app" />} // Redirect unauthenticated users
       >
         <Route index element={<Navigate to="/dashboard/app" />} />
         <Route path="404" element={<Page404 />} />
