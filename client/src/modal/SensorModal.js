@@ -20,7 +20,7 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
   const [sensorData, setSensorData] = useState({
     location: {
       type: 'Point',
-      coordinates: [0, 0],
+      coordinates: [0.0, 0.0],
     },
     sensorId: '',
     status: 'inactive', // Default status
@@ -34,7 +34,6 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
       [name]: value,
     }));
   };
-
   const handleCoordinateChange = (event, index) => {
     const { value } = event.target;
   
@@ -42,8 +41,12 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
     const isValidFloat = /^[+-]?\d+(\.\d+)?$/.test(value);
   
     if (isValidFloat) {
+      const parsedValue = parseFloat(value);
+      const formattedValue = parsedValue.toFixed(6); // Format to 6 decimal places
+  
       const updatedCoordinates = [...sensorData.location.coordinates];
-      updatedCoordinates[index] = parseFloat(value);
+      updatedCoordinates[index] = parseFloat(formattedValue); // Store as a number
+  
       setSensorData((prevData) => ({
         ...prevData,
         location: {
@@ -64,25 +67,21 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
     }
   };
   
+
   
 
-  const handleSubmit = async() => {
-    // Implement your logic to handle the submission of new sensor data
-    // For example, call an API to create a new sensor with sensorData
+  async function handleSubmit () {
     console.log(sensorData)
-    
-     await addNewSensor(sensorData)
-     fetchSensorData();
+      await addNewSensor(sensorData)
+      fetchSensorData();
     setSensorData({
       location: {
         type: 'Point',
         coordinates: [0, 0],
       },
       sensorId: '',
-      status: 'inactive', // Default status
-      // Add other sensor properties here
+      status: 'inactive', 
     })
-    // Then close the modal using onClose
     onClose();
   };
 

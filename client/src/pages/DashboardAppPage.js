@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect,useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
+
 import { Grid, Container, Typography } from '@mui/material';
 
 import { getAllSensors } from '../service/api';
@@ -30,7 +31,7 @@ export default function DashboardAppPage() {
   async function fetchSensorData() {
     const data = await getAllSensors(); // Assuming you have a function to get sensor data
     const total = data.length;
-    const available = data.filter(sensor => sensor.status === 'inactive').length;
+    const available = data.filter(sensor => sensor.status === 'inactive'||sensor.status==='false').length;
     const banned = data.filter(sensor => sensor.status==='banned').length;
 
     const occupied = total - available - banned;
@@ -67,6 +68,7 @@ export default function DashboardAppPage() {
               total={availableSpaces}
               color="info"
               icon={'ant-design:apple-filled'}
+              
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>

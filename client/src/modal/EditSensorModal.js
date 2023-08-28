@@ -30,7 +30,6 @@ export default function EditSensorModal({ open, onClose, initialSensorData,fetch
       [name]: value,
     }));
   };
-
   const handleCoordinateChange = (event, index) => {
     const { value } = event.target;
   
@@ -38,8 +37,12 @@ export default function EditSensorModal({ open, onClose, initialSensorData,fetch
     const isValidFloat = /^[+-]?\d+(\.\d+)?$/.test(value);
   
     if (isValidFloat) {
+      const parsedValue = parseFloat(value);
+      const formattedValue = parsedValue.toFixed(6); // Format to 6 decimal places
+  
       const updatedCoordinates = [...sensorData.location.coordinates];
-      updatedCoordinates[index] = parseFloat(value);
+      updatedCoordinates[index] = parseFloat(formattedValue); // Store as a number
+  
       setSensorData((prevData) => ({
         ...prevData,
         location: {
@@ -59,7 +62,7 @@ export default function EditSensorModal({ open, onClose, initialSensorData,fetch
       }));
     }
   };
-
+  
   const handleSubmit = async () => {
     // Implement your logic to handle the submission of updated sensor data
     // For example, call an API to update the sensor using sensorData

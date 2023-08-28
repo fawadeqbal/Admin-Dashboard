@@ -120,10 +120,10 @@ export default function SensorPage() {
   }, []);
   
   async function fetchSensorData() {
-    setIsLoading(true); // Set loading to true while fetching
+    setIsLoading(true);
     const data = await getAllSensors();
     setSensorList(data);
-    setIsLoading(false); // Set loading to false after fetching
+    setIsLoading(false); 
   }
   
 
@@ -334,7 +334,7 @@ export default function SensorPage() {
                               }
                               label="Select Status"
                               color={
-                                status === "active"
+                                status === "active" || status ==='true'
                                   ? "success"
                                   : status === "banned"
                                   ? "error"
@@ -344,6 +344,8 @@ export default function SensorPage() {
                               <MenuItem value="active">Active</MenuItem>
                               <MenuItem value="inactive">Inactive</MenuItem>
                               <MenuItem value="banned">Banned</MenuItem>
+                              <MenuItem value="true">True</MenuItem>
+                              <MenuItem value="false">False</MenuItem>
                             </Select>
                           </TableCell>
 
