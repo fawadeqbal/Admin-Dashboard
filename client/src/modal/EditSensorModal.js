@@ -103,8 +103,8 @@ export default function EditSensorModal({ open, onClose, initialSensorData,fetch
               onChange={handleInputChange}
               label="Status"
             >
-              <MenuItem value="active">Active</MenuItem>
-              <MenuItem value="inactive">Inactive</MenuItem>
+             <MenuItem value="true">True</MenuItem>
+                              <MenuItem value="false">False</MenuItem>
             </Select>
           </FormControl>
           <TextField
