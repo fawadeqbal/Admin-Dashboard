@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { UserProfile, useUser } from "@clerk/clerk-react"; // Import Clerk's useUser hook
+import {UserProfile, useUser } from "@clerk/clerk-react"; // Import Clerk's useUser hook
 import DashboardLayout from "./layouts/dashboard";
 import SimpleLayout from "./layouts/simple";
 import SensorPage from "./pages/SensorPage";
@@ -15,19 +15,19 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/sign-up" element={<SignupPage />} />
-      <Route
-        path="/sign-in"
-        element={<LoginPage /> }
-      />
-      <Route
+      {
+        isSignedIn ?<Route
         path="/dashboard"
-        element={isSignedIn ? <DashboardLayout /> : <Navigate to="/sign-in" />}
+        element={ <DashboardLayout /> }
       >
         <Route index element={<Navigate to="app" />} />
         <Route path="app" element={<DashboardAppPage />} />
         <Route path="sensor" element={<SensorPage />} />
         <Route path="user" element={<UserProfile />} />
-      </Route>
+      </Route>:
+      <Route path="sign-in" element={<LoginPage/>}/>
+      }
+      
       <Route
         element={
           isSignedIn ? <SimpleLayout /> : <Navigate to="/dashboard/app" />
