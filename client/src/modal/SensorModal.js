@@ -23,7 +23,7 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
       coordinates: [0.0, 0.0],
     },
     sensorId: '',
-    status: 'inactive', // Default status
+    status: 'false', // Default status
     // Add other sensor properties here
   });
 
@@ -80,7 +80,7 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
         coordinates: [0, 0],
       },
       sensorId: '',
-      status: 'inactive', 
+      status: 'false', 
     })
     onClose();
   };
@@ -114,8 +114,8 @@ export default function CreateSensorModal({ open, onClose, fetchSensorData }) {
               onChange={handleInputChange}
               label="Status"
             >
-              <MenuItem value="active">Active</MenuItem>
-              <MenuItem value="inactive">Inactive</MenuItem>
+               <MenuItem value="true">True</MenuItem>
+                              <MenuItem value="false">False</MenuItem>
             </Select>
           </FormControl>
           <TextField

@@ -93,7 +93,7 @@ export default function SensorPage() {
       coordinates: [0, 0],
     },
     sensorId: "",
-    status: "inactive", // Default status
+    status: "flase", // Default status
     // Add other sensor properties here
   });
   const [page, setPage] = useState(0);
@@ -334,16 +334,14 @@ export default function SensorPage() {
                               }
                               label="Select Status"
                               color={
-                                status === "active" || status ==='true'
+                                status === "true"
                                   ? "success"
-                                  : status === "banned"
+                                  : status === "false"
                                   ? "error"
                                   : "primary"
                               }
                             >
-                              <MenuItem value="active">Active</MenuItem>
-                              <MenuItem value="inactive">Inactive</MenuItem>
-                              <MenuItem value="banned">Banned</MenuItem>
+                             
                               <MenuItem value="true">True</MenuItem>
                               <MenuItem value="false">False</MenuItem>
                             </Select>
