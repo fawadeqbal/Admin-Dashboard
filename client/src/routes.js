@@ -17,7 +17,7 @@ export default function Router() {
       <Route path="/sign-up" element={<SignupPage />} />
       <Route
         path="/sign-in"
-        element={!isSignedIn ? <LoginPage /> : <Navigate to="/dashboard/app" />}
+        element={<LoginPage /> }
       />
       <Route
         path="/dashboard"
