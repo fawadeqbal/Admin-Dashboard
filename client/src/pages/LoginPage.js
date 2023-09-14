@@ -23,7 +23,7 @@ export default function LoginPage() {
       <Container maxWidth="sm">
         <StyledContent>
           
-          <SignIn afterSignInUrl='/dashboard/app'/>
+          <SignIn />
         </StyledContent>
       </Container>
     </>
