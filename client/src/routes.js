@@ -15,6 +15,7 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/sign-up" element={<SignupPage />} />
+      <Route path="/sign-in" element={<LoginPage/>} />
       {
         isSignedIn ?<Route
         path="/dashboard"
@@ -25,7 +26,7 @@ export default function Router() {
         <Route path="sensor" element={<SensorPage />} />
         <Route path="user" element={<UserProfile />} />
       </Route>:
-      <Route path="sign-in" element={<LoginPage/>}/>
+      <Navigate to="sign-in" />
       }
       
       <Route
