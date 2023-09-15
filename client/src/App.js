@@ -8,7 +8,7 @@ import ThemeProvider from './theme';
 import { StyledChart } from './components/chart';
 import ScrollToTop from './components/scroll-to-top';
 import { ClerkProvider } from '@clerk/clerk-react';
-const REACT_APP_CLERK_PUBLISHABLE_KEY="pk_test_cmVsaWV2ZWQtcGVhY29jay05MS5jbGVyay5hY2NvdW50cy5kZXYk"
+const REACT_APP_CLERK_PUBLISHABLE_KEY="pk_test_cmVhbC1tYWdnb3QtMjYuY2xlcmsuYWNjb3VudHMuZGV2JA"
 const clerkConfig = {
   publishableKey: REACT_APP_CLERK_PUBLISHABLE_KEY,
   // frontendApi: REACT_APP_CLERK_FRONTEND_API_URL,
