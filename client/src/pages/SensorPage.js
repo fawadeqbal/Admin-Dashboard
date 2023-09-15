@@ -123,8 +123,12 @@ export default function SensorPage() {
   
   }, []);
 
-  if(user.organizationMemberships[0].role!=='admin'){
-    return (<h1>Not Accessable</h1>)
+  if(user?.organizationMemberships[0]?.role!=='admin'){
+    return (<h1 style={{
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center'
+    }}>Not Accessable</h1>)
   }
   
   async function fetchSensorData() {
