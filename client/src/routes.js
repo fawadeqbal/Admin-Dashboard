@@ -10,7 +10,9 @@ import DashboardAppPage from "./pages/DashboardAppPage";
 import SignupPage from "./pages/SignupPage";
 
 export default function Router() {
+  
   const { isSignedIn } = useUser(); // Get user data from Clerk
+ 
 
   return (
     <Routes>

@@ -36,6 +36,7 @@ import {
 } from "../sections/@dashboard/sensor";
 import { getAllSensors, updateSensorStatus } from "../service/api";
 import CoordinateCell from "../components/CoordinateCell/CoordinateCell";
+import { useUser } from "@clerk/clerk-react";
 
 
 // mock
@@ -85,6 +86,7 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function SensorPage() {
+  const {user}=useUser()
   const [sensorList, setSensorList] = useState([]);
   const [open, setOpen] = useState(null);
   const [selectedSensor, setSelectedSensor] = useState({
@@ -96,6 +98,7 @@ export default function SensorPage() {
     status: "flase", // Default status
     // Add other sensor properties here
   });
+  
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState("asc");
@@ -117,7 +120,12 @@ export default function SensorPage() {
 
   useEffect(() => {
     fetchSensorData();
+  
   }, []);
+
+  if(user.organizationMemberships[0].role!=='admin'){
+    return (<h1>Not Accessable</h1>)
+  }
   
   async function fetchSensorData() {
     setIsLoading(true);
@@ -125,8 +133,7 @@ export default function SensorPage() {
     setSensorList(data);
     setIsLoading(false); 
   }
-  
-
+ 
   const handleOpenMenu = (event, sensor) => {
     setSelectedSensor(sensor);
     setOpen(event.currentTarget);
