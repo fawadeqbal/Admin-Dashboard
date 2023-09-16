@@ -11,7 +11,7 @@ import { getAllSensors } from '../service/api';
 import {
   AppCurrentVisits,
   AppWidgetSummary,
-  AppConversionRates,
+ 
 } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -22,7 +22,7 @@ export default function DashboardAppPage() {
   const [totalSpaces, setTotalSpaces] = useState(0);
   const [availableSpaces, setAvailableSpaces] = useState(0);
   const [occupiedSpaces, setOccupiedSpaces] = useState(0);
-  const [bannedSpaces, setBannedSpaces] = useState(0);
+ 
 
   useEffect(() => {
     fetchSensorData(); // Assuming you have a function to fetch sensor data
@@ -32,10 +32,9 @@ export default function DashboardAppPage() {
     const data = await getAllSensors(); // Assuming you have a function to get sensor data
     const total = data.length;
     const available = data.filter(sensor => sensor.status === 'inactive'||sensor.status==='false').length;
-    const banned = data.filter(sensor => sensor.status==='banned').length;
-
-    const occupied = total - available - banned;
-    setBannedSpaces(banned)
+   
+    const occupied = total - available ;
+    
     setTotalSpaces(total);
     setAvailableSpaces(available);
     setOccupiedSpaces(occupied);
@@ -47,42 +46,43 @@ export default function DashboardAppPage() {
         <title> SpotTroop | Admin-Dashboard </title>
       </Helmet>
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
          
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={16} sm={6} md={4}>
             <AppWidgetSummary
               title="Total Parking Spaces"
               total={totalSpaces}
               icon={'ant-design:android-filled'}
             />
           </Grid>
+          <Grid item xs={16} sm={6} md={4}>
+            <AppWidgetSummary
+              title="Free Parking Spaces"
+              total={availableSpaces}
+              color="info"
+              icon={'ant-design:windows-filled'}
+            />
           
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={16} sm={6} md={4}>
             <AppWidgetSummary
               title="Use Parking Spaces"
               total={occupiedSpaces}
-              color="info"
+              color="warning"
               icon={'ant-design:apple-filled'}
               
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary
-              title="Free Parking Spaces"
-              total={availableSpaces}
-              color="warning"
-              icon={'ant-design:windows-filled'}
-            />
+          
           </Grid>
          
 
          
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={12} lg={12}>
             <AppCurrentVisits
               title="Parking Spaces"
               chartData={[
