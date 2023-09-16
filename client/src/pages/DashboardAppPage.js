@@ -91,7 +91,7 @@ export default function DashboardAppPage() {
               ]}
               chartColors={[
                 theme.palette.primary.main,
-                theme.palette.info.main
+                theme.palette.warning
               ]}
             />
           </Grid>
