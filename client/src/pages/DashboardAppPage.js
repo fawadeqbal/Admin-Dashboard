@@ -86,12 +86,12 @@ export default function DashboardAppPage() {
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
-                { label: 'Free', value: availableSpaces },
-                { label: 'Used', value: occupiedSpaces }
+                { label: 'Free', value: available },
+                { label: 'Used', value: occupied }
               ]}
               chartColors={[
                 theme.palette.primary.main,
-                theme.palette.warning
+                theme.palette.warning.main,
               ]}
             />
           </Grid>
