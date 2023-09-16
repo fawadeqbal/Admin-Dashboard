@@ -65,7 +65,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title="Use Parking Spaces"
-              total={availableSpaces}
+              total={occupiedSpaces}
               color="info"
               icon={'ant-design:apple-filled'}
               
@@ -74,7 +74,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title="Free Parking Spaces"
-              total={occupiedSpaces}
+              total={availableSpaces}
               color="warning"
               icon={'ant-design:windows-filled'}
             />
