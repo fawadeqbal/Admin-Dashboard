@@ -60,23 +60,24 @@ export default function DashboardAppPage() {
               icon={'ant-design:android-filled'}
             />
           </Grid>
+          <Grid item xs={16} sm={6} md={4}>
+            <AppWidgetSummary
+              title="Free Parking Spaces"
+              total={availableSpaces}
+              color="info"
+              icon={'ant-design:windows-filled'}
+            />
           
           <Grid item xs={16} sm={6} md={4}>
             <AppWidgetSummary
               title="Use Parking Spaces"
               total={occupiedSpaces}
-              color="info"
+              color="warning"
               icon={'ant-design:apple-filled'}
               
             />
           </Grid>
-          <Grid item xs={16} sm={6} md={4}>
-            <AppWidgetSummary
-              title="Free Parking Spaces"
-              total={availableSpaces}
-              color="warning"
-              icon={'ant-design:windows-filled'}
-            />
+          
           </Grid>
          
 
