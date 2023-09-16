@@ -11,7 +11,6 @@ import { getAllSensors } from '../service/api';
 import {
   AppCurrentVisits,
   AppWidgetSummary,
- 
 } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -22,8 +21,7 @@ export default function DashboardAppPage() {
   const [totalSpaces, setTotalSpaces] = useState(0);
   const [availableSpaces, setAvailableSpaces] = useState(0);
   const [occupiedSpaces, setOccupiedSpaces] = useState(0);
- 
-
+  
   useEffect(() => {
     fetchSensorData(); // Assuming you have a function to fetch sensor data
   }, []);
@@ -32,7 +30,7 @@ export default function DashboardAppPage() {
     const data = await getAllSensors(); // Assuming you have a function to get sensor data
     const total = data.length;
     const available = data.filter(sensor => sensor.status === 'inactive'||sensor.status==='false').length;
-   
+    
     const occupied = total - available ;
     
     setTotalSpaces(total);
@@ -46,7 +44,7 @@ export default function DashboardAppPage() {
         <title> SpotTroop | Admin-Dashboard </title>
       </Helmet>
 
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome back
         </Typography>
@@ -60,24 +58,23 @@ export default function DashboardAppPage() {
               icon={'ant-design:android-filled'}
             />
           </Grid>
-          <Grid item xs={16} sm={6} md={4}>
-            <AppWidgetSummary
-              title="Free Parking Spaces"
-              total={availableSpaces}
-              color="info"
-              icon={'ant-design:windows-filled'}
-            />
           
           <Grid item xs={16} sm={6} md={4}>
             <AppWidgetSummary
               title="Use Parking Spaces"
               total={occupiedSpaces}
-              color="warning"
+              color="info"
               icon={'ant-design:apple-filled'}
               
             />
           </Grid>
-          
+          <Grid item xs={16} sm={6} md={4}>
+            <AppWidgetSummary
+              title="Free Parking Spaces"
+              total={availableSpaces}
+              color="warning"
+              icon={'ant-design:windows-filled'}
+            />
           </Grid>
          
 
@@ -101,3 +98,4 @@ export default function DashboardAppPage() {
     </>
   );
 }
+
