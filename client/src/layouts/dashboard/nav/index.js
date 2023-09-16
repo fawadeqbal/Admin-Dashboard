@@ -36,8 +36,16 @@ Nav.propTypes = {
 
 export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
-  const user=useUser()
+  
+  const {user}=useUser()
+ 
 
+  useEffect(() => {
+    if (user?.organizationMemberships[0]?.role !== 'admin') {
+      const updatedData = filterData.filter((sensor) => sensor.title !== 'Sensor');
+      setFilterData(updatedData);
+    }
+  }, [user]);
   const isDesktop = useResponsive('up', 'lg');
 
   useEffect(() => {
@@ -61,11 +69,11 @@ export default function Nav({ openNav, onCloseNav }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={user.user.imageUrl} alt={`${user.user.fullName}`} />
+            <Avatar src={user.imageUrl} alt={`${user.fullName}`} />
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {user.user.fullName}
+                {user.fullName}
               </Typography>
 
             </Box>
@@ -73,7 +81,7 @@ export default function Nav({ openNav, onCloseNav }) {
         </Link>
       </Box>
 
-      <NavSection data={navConfig} />
+      <NavSection data={filterData} />
 
       {/* <Box sx={{ flexGrow: 1 }} /> */}
 
