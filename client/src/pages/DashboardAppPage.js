@@ -79,52 +79,23 @@ export default function DashboardAppPage() {
               icon={'ant-design:windows-filled'}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary
-              title="Banned Parking Spaces"
-              total={bannedSpaces}
-              color="error"
-              icon={'ant-design:windows-filled'}
-            />
-          </Grid>
+         
 
          
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: 'Free', value: available },
+                { label: 'Used', value: occupied }
               ]}
               chartColors={[
                 theme.palette.primary.main,
-                theme.palette.info.main,
-                theme.palette.warning.main,
-                theme.palette.error.main,
+                theme.palette.info.main
               ]}
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
-            <AppConversionRates
-              title="Conversion Rates"
-              subheader="(+43%) than last year"
-              chartData={[
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
-              ]}
-            />
-          </Grid>
         </Grid>
       </Container>
     </>
