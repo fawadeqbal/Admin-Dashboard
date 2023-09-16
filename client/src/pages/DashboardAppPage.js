@@ -84,7 +84,7 @@ export default function DashboardAppPage() {
          
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
-              title="Current Visits"
+              title="Parking Spaces"
               chartData={[
                 { label: 'Free', value: availableSpaces },
                 { label: 'Used', value: occupiedSpaces }
