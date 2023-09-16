@@ -52,7 +52,7 @@ export default function DashboardAppPage() {
           Hi, Welcome back
         </Typography>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
          
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
@@ -90,7 +90,7 @@ export default function DashboardAppPage() {
                 { label: 'Used', value: occupiedSpaces }
               ]}
               chartColors={[
-                "green",
+                theme.palette.info.main,
                 theme.palette.warning.main,
               ]}
             />
