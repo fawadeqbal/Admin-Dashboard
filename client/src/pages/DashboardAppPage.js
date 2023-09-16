@@ -55,7 +55,7 @@ export default function DashboardAppPage() {
             <AppWidgetSummary
               title="Total Parking Spaces"
               total={totalSpaces}
-              icon={'ant-design:android-filled'}
+              icon={'mingcute:parking-fill'}
             />
           </Grid>
           
@@ -64,7 +64,7 @@ export default function DashboardAppPage() {
               title="Use Parking Spaces"
               total={occupiedSpaces}
               color="info"
-              icon={'ant-design:apple-filled'}
+              icon={'mingcute:parking-fill'}
               
             />
           </Grid>
@@ -73,7 +73,7 @@ export default function DashboardAppPage() {
               title="Free Parking Spaces"
               total={availableSpaces}
               color="warning"
-              icon={'ant-design:windows-filled'}
+              icon={'mingcute:parking-fill'}
             />
           </Grid>
          
