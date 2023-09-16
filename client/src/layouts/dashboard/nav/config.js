@@ -15,12 +15,7 @@ const navConfig = [
     title: 'Sensor',
     path: '/dashboard/sensor',
     icon: icon('sensor-10'),
-  },
-  {
-     title: 'User Setting',
-     path: '/dashboard/user',
-     icon: icon('settings'),
-   },
+  }
 ];
 
 export default navConfig;

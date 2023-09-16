@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { UserProfile, useUser } from "@clerk/clerk-react"; // Import Clerk's useUser hook
+import { useUser } from "@clerk/clerk-react"; // Import Clerk's useUser hook
 import DashboardLayout from "./layouts/dashboard";
 import SimpleLayout from "./layouts/simple";
 import SensorPage from "./pages/SensorPage";
@@ -28,7 +28,6 @@ export default function Router() {
         <Route index element={<Navigate to="app" />} />
         <Route path="app" element={<DashboardAppPage />} />
         <Route path="sensor" element={<SensorPage />} />
-        <Route path="user" element={<UserProfile />} />
       </Route>
       <Route
         element={
