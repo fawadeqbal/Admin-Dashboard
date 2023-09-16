@@ -86,8 +86,8 @@ export default function DashboardAppPage() {
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
-                { label: 'Free', value: available },
-                { label: 'Used', value: occupied }
+                { label: 'Free', value: availableSpaces },
+                { label: 'Used', value: occupiedSpaces }
               ]}
               chartColors={[
                 theme.palette.primary.main,
