@@ -90,7 +90,7 @@ export default function DashboardAppPage() {
                 { label: 'Used', value: occupiedSpaces }
               ]}
               chartColors={[
-                theme.palette.primary.main,
+                "green",
                 theme.palette.warning.main,
               ]}
             />
