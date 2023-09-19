@@ -34,7 +34,7 @@ import {
   SensorListHead,
   SensorListToolbar,
 } from "../sections/@dashboard/sensor";
-import { getAllSensors, updateSensorStatus } from "../service/api";
+import { getAllSensors, updateSensorStatus,deleteSensor } from "../service/api";
 import CoordinateCell from "../components/CoordinateCell/CoordinateCell";
 import { useUser } from "@clerk/clerk-react";
 
@@ -178,7 +178,7 @@ export default function SensorPage() {
   };
 
   const handleDelete = async () => {
-    // await deleteSensor(selectedSensor._id);
+    await deleteSensor(selectedSensor._id);
     fetchSensorData();
     setOpen(null); // Close the popover when deleting
   };
