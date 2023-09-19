@@ -13,10 +13,10 @@ export const addNewSensor=async(sensor)=>{
      const res=await axios.post(`${URL}/sensor/postSensor`,sensor)
     console.log(res.data)
 }
-// export const deleteSensor = async (id)=>{
-//      const res= await axios.delete(`${URL}/sensor/${id}`)
-//      console.log(res.data)
-// }
+export const deleteSensor = async (id)=>{
+     const res= await axios.delete(`${URL}/sensor/deleteSensor/${id}`)
+     console.log(res.data)
+}
 
 export const updateSensor = async (sensor)=>{
      const res= await axios.put(`${URL}/sensor/updateSensors/${sensor._id}`,sensor)
